@@ -1,12 +1,6 @@
 #!/bin/bash
 
-: <<'COMMENT'
-    Usage: ./merge_pdfs.sh <pdf1> <pdf2> [output]
-
-    Setup:
-        1. make it runnable 'chmod +x merge_pdfs.sh'
-COMMENT
-
+# Validate input
 if [ "$#" -lt 2 ] || [ "$#" -gt 3 ]; then
     echo "⚠️ Usage: ./merge_pdfs.sh <pdf1> <pdf2> [output]"
     exit 1
@@ -16,6 +10,7 @@ PDF1="$1"
 PDF2="$2"
 OUTPUT="${3:-$(basename "$PDF1" .pdf)-merged.pdf}"
 
+# Ensure uniqe output file name
 if [ -f "$OUTPUT" ]; then
     BASE=$(basename "$OUTPUT" .pdf)
     DIR=$(dirname "$OUTPUT")

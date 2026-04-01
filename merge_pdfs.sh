@@ -8,17 +8,17 @@ fi
 
 PDF1="$1"
 PDF2="$2"
-OUTPUT="${3:-$(basename "$PDF1" .pdf)-merged.pdf}"
+PDF_DIR=$(dirname "$PDF1")
+OUTPUT="${3:-$PDF_DIR/$(basename "$PDF1" .pdf)-merged.pdf}"
 
-# Ensure uniqe output file name
+# Ensure unique output file name
 if [ -f "$OUTPUT" ]; then
     BASE=$(basename "$OUTPUT" .pdf)
-    DIR=$(dirname "$OUTPUT")
     COUNTER=1
-    while [ -f "$DIR/$BASE ($COUNTER).pdf" ]; do
+    while [ -f "$PDF_DIR/$BASE ($COUNTER).pdf" ]; do
         COUNTER=$((COUNTER + 1))
     done
-    OUTPUT="${BASE} ($COUNTER).pdf"
+    OUTPUT="$PDF_DIR/$BASE ($COUNTER).pdf"
     echo "⚠️  Output already exists, saving as '$OUTPUT' instead"
 fi
 

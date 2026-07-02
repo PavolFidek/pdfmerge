@@ -65,7 +65,7 @@ for f in "$1" "$2"; do
   esac
 done
 
-"/<youpath>/pdfmerge/merge_pdfs.sh" "$1" "$2"
+"/<yourpath>/pdfmerge/merge_pdfs.sh" "$1" "$2"
 ```
 
 ## Create a keyboard shortcut
